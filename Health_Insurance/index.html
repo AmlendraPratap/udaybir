@@ -32,15 +32,13 @@ p{
 }
 label{
     font-weight:bold;
-    display:block;
-    margin-bottom:8px;
 }
 input[type=text]{
     width:100%;
     padding:10px;
+    margin-top:8px;
     border:1px solid #ccc;
     border-radius:5px;
-    box-sizing:border-box;
 }
 button{
     background:#128c7e;
@@ -72,43 +70,47 @@ details for the person(s) to be insured:
 <form id="healthForm">
 
 <div class="q">
-<label>Postal Code (PIN Code)</label>
+<label><input type="radio" name="info" id="r1"> Postal Code (PIN Code)</label>
 <input type="text" id="a1" placeholder="Enter PIN Code">
 </div>
 
 <div class="q">
-<label>Aadhaar Card</label>
+<label><input type="radio" name="info" id="r2"> Aadhaar Card</label>
 <input type="text" id="a2" placeholder="Enter Aadhaar Number">
 </div>
 
 <div class="q">
-<label>Full Name (as on PAN/Aadhaar Card)</label>
+<label><input type="radio" name="info" id="r3"> Full Name (as on PAN/Aadhaar Card)</label>
 <input type="text" id="a3" placeholder="Enter Full Name">
 </div>
 
 <div class="q">
-<label>Mobile No.</label>
+<label><input type="radio" name="info" id="r4"> Mobile No.</label>
 <input type="text" id="a4" placeholder="Enter Mobile Number">
 </div>
 
 <div class="q">
-<label>Date of Birth (DD/MM/YYYY)</label>
+<label><input type="radio" name="info" id="r5"> Date of Birth (DD/MM/YYYY)</label>
 <input type="text" id="a5" placeholder="DD/MM/YYYY">
 </div>
 
 <div class="q">
-<label>Height (in cm/ft & in)</label>
+<label><input type="radio" name="info" id="r6"> Height (in cm/ft & in)</label>
 <input type="text" id="a6" placeholder="Example: 170 cm">
 </div>
 
 <div class="q">
-<label>Weight (in kg)</label>
+<label><input type="radio" name="info" id="r7"> Weight (in kg)</label>
 <input type="text" id="a7" placeholder="Example: 72 kg">
 </div>
 
 <div class="q">
-<label>Pre-Existing Diseases (PED), if any</label>
+<label><input type="radio" name="info" id="r8"> Pre-Existing Diseases (PED), if any</label>
 <input type="text" id="a8" placeholder="Mention Disease(s)">
+</div>
+
+<div class="q">
+<label><input type="radio" name="info" id="r9"> Once I receive the above details, I will generate and share the most suitable health insurance quotation.</label>
 </div>
 
 <br>
@@ -121,7 +123,7 @@ details for the person(s) to be insured:
 
 <script>
 
-document.getElementById("healthForm").onsubmit = function(e){
+document.getElementById("healthForm").onsubmit=function(e){
 
 e.preventDefault();
 
@@ -137,18 +139,26 @@ const questions = [
 "Date of Birth (DD/MM/YYYY)",
 "Height (in cm/ft & in)",
 "Weight (in kg)",
-"Pre-Existing Diseases (PED), if any"
+"Pre-Existing Diseases (PED), if any)",
+"Once I receive the above details, I will generate and share the most suitable health insurance quotation."
 ];
 
-for(let i=1;i<=8;i++){
+for(let i=1;i<=9;i++){
 
-msg += questions[i-1] + "\n";
-msg += "Answer: " + document.getElementById("a"+i).value + "\n\n";
+let checked=document.getElementById("r"+i).checked;
+
+msg+=(checked?"_ ":"_ ")+questions[i-1];
+
+if(i<9){
+msg+="\nAnswer: "+document.getElementById("a"+i).value;
+}
+
+msg+="\n\n";
 
 }
 
 window.open(
-"https://wa.me/919810597410?text=" + encodeURIComponent(msg),
+"https://wa.me/919810597410?text="+encodeURIComponent(msg),
 "_blank"
 );
 
