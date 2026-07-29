@@ -3,65 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Term Insurance</title>
+<title>Term Insurance Quotation Request</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+:root {
+    --primary: #075E54;
+    --primary-dark: #054840;
+    --primary-light: #e8f5f3;
+    --accent: #25D366;
+    --accent-hover: #1ebc5b;
+    --bg: #f4f7f6;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --error: #ef4444;
+    --success: #10b981;
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --shadow: 0 12px 32px -4px rgba(7, 94, 84, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+}
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-body{
-    background:#eef4f1;
-    padding:16px;
-    color: #333;
+body {
+    background-color: var(--bg);
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(37, 211, 102, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(7, 94, 84, 0.08) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: var(--text);
+    padding: 24px 12px;
+    min-height: 100vh;
 }
 
-.container{
-    max-width:700px;
-    margin:auto;
-    background:#fff;
-    padding:28px 24px;
-    border-radius:16px;
-    box-shadow:0 8px 24px rgba(7, 94, 84, 0.12);
+.main-wrapper {
+    max-width: 760px;
+    margin: 0 auto;
 }
 
-.header-banner {
-    text-align: center;
+/* Header Banner */
+.brand-card {
+    background: linear-gradient(135deg, #075E54 0%, #0c4a42 100%);
+    color: #ffffff;
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
     margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 2px solid #eef4f1;
+    box-shadow: 0 16px 36px -8px rgba(7, 94, 84, 0.25);
+    position: relative;
+    overflow: hidden;
 }
 
-.header-banner h2{
-    color:#075e54;
-    font-size: 26px;
+.brand-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 260px;
+    height: 260px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: 0.3px;
+}
+
+.brand-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.brand-card p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.6;
+}
+
+/* Form Container */
+.form-container {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Progress Bar */
+.progress-box {
+    margin-bottom: 28px;
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(7, 94, 84, 0.12);
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
     font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.progress-track {
+    height: 8px;
+    background: #cbd5e1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+/* Form Sections */
+.section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary-light);
+}
+
+.section-title svg {
+    width: 20px;
+    height: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.label-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 6px;
 }
 
-.header-banner p {
-    color: #555;
-    font-size: 15px;
-    line-height: 1.5;
+label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
 }
 
-.form-group{
-    margin-bottom:20px;
+label .req {
+    color: var(--error);
 }
 
-label{
-    font-weight:600;
-    display:block;
-    margin-bottom:8px;
-    color: #2c3e50;
-    font-size: 15px;
+.badge-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: var(--primary-light);
+    color: var(--primary);
 }
 
-label .required {
-    color: #e74c3c;
+/* Input Fields */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 input[type="text"],
@@ -70,475 +217,923 @@ input[type="email"],
 input[type="date"],
 input[type="number"],
 select,
-textarea{
-    width:100%;
-    padding:14px 16px;
-    border:1.5px solid #dcdfe6;
-    border-radius:10px;
-    font-size:15px;
+textarea {
+    width: 100%;
+    padding: 13px 16px;
+    font-size: 14.5px;
+    color: var(--text);
+    background: #f8fafc;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-md);
     outline: none;
-    transition: all 0.25s ease;
-    background-color: #fcfcfc;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input:hover, select:hover, textarea:hover {
+    border-color: #cbd5e1;
+    background: #ffffff;
 }
 
 input:focus, select:focus, textarea:focus {
-    border-color: #075e54;
-    background-color: #fff;
-    box-shadow: 0 0 0 3px rgba(7, 94, 84, 0.15);
+    border-color: var(--primary);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(7, 94, 84, 0.12);
 }
 
-textarea{
-    resize:vertical;
+/* Validation States */
+.input-group.invalid input,
+.input-group.invalid select,
+.input-group.invalid textarea {
+    border-color: var(--error) !important;
+    background: #fef2f2 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
 }
 
-/* Upload & Capture Styling */
-.upload-card {
-    border: 2px dashed #075e54;
-    border-radius: 12px;
-    padding: 20px;
-    background: #f4f9f6;
-    text-align: center;
-    transition: background 0.3s ease;
+.input-group.valid input {
+    border-color: var(--success) !important;
 }
 
-.upload-card:hover {
-    background: #eaf4ef;
-}
-
-.upload-actions {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 12px;
-}
-
-.btn-upload {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: #075e54;
-    color: #fff;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    transition: transform 0.15s ease, background 0.2s ease;
-}
-
-.btn-upload:hover {
-    background: #054840;
-}
-
-.btn-upload:active {
-    transform: scale(0.98);
-}
-
-.btn-upload.btn-secondary {
-    background: #34495e;
-}
-
-.btn-upload.btn-secondary:hover {
-    background: #2c3e50;
-}
-
-.hidden-input {
-    display: none;
-}
-
-/* Preview Box */
-.preview-container {
-    display: none;
-    margin-top: 16px;
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 14px;
-    text-align: left;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-
-.preview-content {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.preview-thumb {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    background: #eee;
-}
-
-.preview-details {
-    flex: 1;
-    font-size: 13px;
-    color: #444;
-}
-
-.preview-details strong {
-    display: block;
-    font-size: 14px;
-    color: #111;
-    margin-bottom: 4px;
-    word-break: break-all;
-}
-
-.btn-remove-file {
-    background: #ff4d4f;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
+.error-msg {
     font-size: 12px;
-    cursor: pointer;
+    color: var(--error);
+    font-weight: 600;
+    margin-top: 5px;
+    display: none;
+    align-items: center;
+    gap: 4px;
+}
+
+.input-group.invalid .error-msg {
+    display: flex;
+}
+
+/* Choice Pills */
+.pill-grid {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
     margin-top: 6px;
 }
 
-.btn-remove-file:hover {
-    background: #d9363e;
+.pill-option {
+    flex: 1;
+    min-width: 90px;
+    text-align: center;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    background: #f8fafc;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
 }
 
-/* Submit Button */
-.btn-submit {
-    width:100%;
-    background:#25D366;
-    color:#fff;
-    border:none;
-    padding:16px;
-    font-size:18px;
+.pill-option:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.pill-option.active {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(7, 94, 84, 0.2);
+}
+
+/* Dynamic Cover Buttons */
+.cover-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.cover-btn {
+    padding: 7px 12px;
+    font-size: 12.5px;
     font-weight: 700;
-    border-radius:10px;
-    cursor:pointer;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #ffffff;
+    color: var(--primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cover-btn:hover, .cover-btn.active {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+}
+
+/* Upload Dropzone */
+.upload-dropzone {
+    border: 2px dashed #a7f3d0;
+    background: #f0fdf4;
+    border-radius: var(--radius-md);
+    padding: 24px;
+    text-align: center;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.upload-dropzone:hover {
+    border-color: var(--primary);
+    background: #e6f7ef;
+}
+
+.upload-icon-circle {
+    width: 52px;
+    height: 52px;
+    background: #ffffff;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto 12px auto;
+    box-shadow: 0 4px 12px rgba(7, 94, 84, 0.1);
+    color: var(--primary);
+}
+
+.upload-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.upload-sub {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.btn-row {
+    display: flex;
+    justify-content: center;
     gap: 10px;
-    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+.action-btn-sm {
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.15s ease;
+}
+
+.action-btn-sm:active {
+    transform: scale(0.97);
+}
+
+.btn-cam {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-gallery {
+    background: #334155;
+    color: white;
+}
+
+/* Live Preview Card */
+.doc-preview-card {
+    display: none;
+    margin-top: 16px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: var(--radius-md);
+    padding: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.preview-grid {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.preview-img-box {
+    width: 76px;
+    height: 76px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    background: #f1f5f9;
+}
+
+.preview-meta {
+    flex: 1;
+}
+
+.preview-filename {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text);
+    word-break: break-all;
+}
+
+.preview-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+}
+
+.meta-chip {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    color: var(--text-muted);
+}
+
+.meta-chip.highlight {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.btn-delete-file {
+    background: #fee2e2;
+    color: var(--error);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+
+.btn-delete-file:hover {
+    background: #fca5a5;
+}
+
+/* Floating / Main Submit Button */
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #25D366 0%, #10b981 100%);
+    color: #ffffff;
+    border: none;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
     transition: all 0.25s ease;
-    margin-top: 10px;
 }
 
-.btn-submit:hover{
-    background:#1ebc5b;
-    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
+.submit-btn:hover {
+    background: linear-gradient(135deg, #1ebc5b 0%, #059669 100%);
+    box-shadow: 0 12px 28px rgba(37, 211, 102, 0.45);
+    transform: translateY(-1px);
 }
 
-.btn-submit:active {
+.submit-btn:active {
     transform: translateY(1px);
 }
 
-.note{
-    color:#666;
-    font-size:14px;
-    margin-top:20px;
+.footer-note {
     text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 18px;
     line-height: 1.5;
 }
 
-/* Responsive adjustment */
-@media (max-width: 480px) {
-    .container {
-        padding: 20px 16px;
+@media (max-width: 640px) {
+    .form-grid {
+        grid-template-columns: 1fr;
     }
-    .upload-actions {
-        flex-direction: column;
+    .full-width {
+        grid-column: span 1;
     }
-    .btn-upload {
-        width: 100%;
+    .brand-card {
+        padding: 24px 20px;
+    }
+    .form-container {
+        padding: 24px 18px;
     }
 }
 </style>
-
 </head>
 <body>
 
-<div class="container">
+<div class="main-wrapper">
 
-<div class="header-banner">
-    <h2>Term Insurance</h2>
-    <p>Dear Sir/Madam,<br>To generate your <b>Term Insurance quotation</b>, kindly fill in the details below:</p>
-</div>
-
-<form id="termForm">
-
-<div class="form-group">
-<label>Full Name <span class="required">*</span></label>
-<input type="text" id="name" placeholder="Enter your full name" required>
-</div>
-
-<div class="form-group">
-<label>Mobile Number <span class="required">*</span></label>
-<input type="tel" id="mobile" placeholder="10-digit mobile number" required>
-</div>
-
-<div class="form-group">
-<label>Email ID</label>
-<input type="email" id="email" placeholder="example@email.com">
-</div>
-
-<div class="form-group">
-<label>PIN Code <span class="required">*</span></label>
-<input type="text" id="pincode" placeholder="6-digit PIN code" required>
-</div>
-
-<div class="form-group">
-<label>Date of Birth <span class="required">*</span></label>
-<input type="date" id="dob" required>
-</div>
-
-<div class="form-group">
-<label>Gender</label>
-<select id="gender">
-<option value="Male">Male</option>
-<option value="Female">Female</option>
-<option value="Other">Other</option>
-</select>
-</div>
-
-<div class="form-group">
-<label>Height (cm)</label>
-<input type="number" id="height" placeholder="e.g. 175">
-</div>
-
-<div class="form-group">
-<label>Weight (kg)</label>
-<input type="number" id="weight" placeholder="e.g. 70">
-</div>
-
-<div class="form-group">
-<label>Annual Income / CTC</label>
-<input type="text" id="income" placeholder="e.g. ₹ 8,000,000">
-</div>
-
-<div class="form-group">
-<label>Occupation</label>
-<input type="text" id="occupation" placeholder="e.g. Salaried / Business">
-</div>
-
-<div class="form-group">
-<label>Do You Smoke / Consume Tobacco?</label>
-<select id="smoker">
-<option value="No">No</option>
-<option value="Yes">Yes</option>
-</select>
-</div>
-
-<div class="form-group">
-<label>Existing Medical Conditions</label>
-<textarea id="medical" rows="3" placeholder="Mention any medical condition or type 'None'"></textarea>
-</div>
-
-<div class="form-group">
-<label>Required Life Cover (₹)</label>
-<input type="text" id="cover" placeholder="e.g. ₹ 1 Crore">
-</div>
-
-<div class="form-group">
-<label>Preferred Policy Term (Years)</label>
-<input type="number" id="term" placeholder="e.g. 30">
-</div>
-
-<!-- Upload / Camera Section -->
-<div class="form-group">
-<label>Attach Document / Capture Photo (Optional)</label>
-
-<p style="font-size: 13px; color: #666; margin-bottom: 10px;">Select document type and capture/upload photo (e.g. Aadhaar, PAN, Salary Slip, Existing Policy, etc.)</p>
-
-<div class="form-group" style="margin-bottom: 12px;">
-    <select id="docType">
-        <option value="ID Proof / Aadhaar Card">Aadhaar Card / ID Proof</option>
-        <option value="PAN Card">PAN Card</option>
-        <option value="Income Proof / Salary Slip">Income Proof / Salary Slip</option>
-        <option value="Existing Policy Document">Existing Policy Document</option>
-        <option value="Medical Report">Medical Report</option>
-        <option value="Other Document">Other Document</option>
-    </select>
-</div>
-
-<div class="upload-card">
-    <div style="font-size: 32px; margin-bottom: 6px;">📷</div>
-    <div style="font-weight: 600; color: #075e54;">Capture or Choose Image</div>
-    <div style="font-size: 12px; color: #777; margin-top: 4px;">Tap below to use Mobile Camera or pick from Gallery</div>
-    
-    <div class="upload-actions">
-        <!-- Button 1: Open Mobile Camera directly -->
-        <button type="button" class="btn-upload" onclick="document.getElementById('cameraInput').click()">
-            📸 Open Camera
-        </button>
-        
-        <!-- Button 2: Choose from File / Gallery -->
-        <button type="button" class="btn-upload btn-secondary" onclick="document.getElementById('galleryInput').click()">
-            📁 Choose File
-        </button>
-    </div>
-
-    <!-- Hidden file inputs -->
-    <input type="file" id="cameraInput" class="hidden-input" accept="image/*" capture="environment" onchange="handleFileSelect(this)">
-    <input type="file" id="galleryInput" class="hidden-input" accept="image/*,application/pdf" onchange="handleFileSelect(this)">
-</div>
-
-<!-- Preview Container -->
-<div id="previewContainer" class="preview-container">
-    <div class="preview-content">
-        <img id="previewImage" class="preview-thumb" src="" alt="Captured Image Preview">
-        <div class="preview-details">
-            <strong id="previewFileName">filename.jpg</strong>
-            <div>Category: <span id="previewDocType" style="font-weight:600; color:#075e54;">-</span></div>
-            <div>Size: <span id="previewFileSize">-</span></div>
-            <div>Type: <span id="previewFileType">-</span></div>
-            <button type="button" class="btn-remove-file" onclick="removeSelectedFile()">✕ Remove Document</button>
+    <!-- Header Banner -->
+    <div class="brand-card">
+        <div class="brand-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Instant Quote • Best Premium Guarantee
         </div>
+        <h1>Term Insurance Quotation</h1>
+        <p>Fill in your details below to receive a personalized, high-cover term insurance quote directly on WhatsApp.</p>
     </div>
-</div>
-</div>
 
-<div class="form-group">
-<label>Additional Remarks</label>
-<textarea id="remarks" rows="3" placeholder="Any specific requirements..."></textarea>
-</div>
+    <!-- Main Card -->
+    <div class="form-container">
 
-<button type="button" class="btn-submit" onclick="sendWhatsApp()">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-    Send via WhatsApp
-</button>
+        <!-- Real-time Progress Bar -->
+        <div class="progress-box">
+            <div class="progress-info">
+                <span>FORM COMPLETION</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+        </div>
 
-</form>
+        <form id="termInsuranceForm" novalidate>
 
-<p class="note">
-These details will help us generate the most suitable Term Insurance quotation with the best available premium.
-</p>
+            <!-- SECTION 1: Personal Details -->
+            <div class="section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                1. Personal Information
+            </div>
+
+            <div class="form-grid">
+                <!-- Full Name -->
+                <div class="form-group input-group full-width" id="group-name">
+                    <div class="label-box">
+                        <label for="fullName">Full Name <span class="req">*</span></label>
+                    </div>
+                    <input type="text" id="fullName" placeholder="e.g. Rahul Sharma" required oninput="validateName()">
+                    <div class="error-msg" id="err-fullName">⚠️ Please enter a valid full name (at least 3 letters).</div>
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="form-group input-group" id="group-mobile">
+                    <div class="label-box">
+                        <label for="mobile">Mobile Number <span class="req">*</span></label>
+                        <span class="badge-tag">WhatsApp</span>
+                    </div>
+                    <input type="tel" id="mobile" placeholder="10-digit mobile number" maxlength="10" required oninput="validateMobile()">
+                    <div class="error-msg" id="err-mobile">⚠️ Enter a valid 10-digit mobile number (starts with 6-9).</div>
+                </div>
+
+                <!-- Email ID -->
+                <div class="form-group input-group" id="group-email">
+                    <div class="label-box">
+                        <label for="email">Email ID</label>
+                    </div>
+                    <input type="email" id="email" placeholder="rahul@example.com" oninput="validateEmail()">
+                    <div class="error-msg" id="err-email">⚠️ Please enter a valid email address.</div>
+                </div>
+
+                <!-- PIN Code -->
+                <div class="form-group input-group" id="group-pincode">
+                    <div class="label-box">
+                        <label for="pincode">PIN Code <span class="req">*</span></label>
+                    </div>
+                    <input type="text" id="pincode" placeholder="6-digit Indian PIN code" maxlength="6" required oninput="validatePincode()">
+                    <div class="error-msg" id="err-pincode">⚠️ Enter a valid 6-digit Indian PIN code.</div>
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="form-group input-group" id="group-dob">
+                    <div class="label-box">
+                        <label for="dob">Date of Birth <span class="req">*</span></label>
+                        <span class="badge-tag" id="ageBadge">Age: --</span>
+                    </div>
+                    <input type="date" id="dob" required onchange="validateDOB()">
+                    <div class="error-msg" id="err-dob">⚠️ Age must be between 18 and 65 years.</div>
+                </div>
+
+                <!-- Gender Pill Selection -->
+                <div class="form-group full-width">
+                    <label>Gender <span class="req">*</span></label>
+                    <div class="pill-grid" id="genderGrid">
+                        <div class="pill-option active" data-val="Male" onclick="selectPill('genderGrid', this)">👨 Male</div>
+                        <div class="pill-option" data-val="Female" onclick="selectPill('genderGrid', this)">👩 Female</div>
+                        <div class="pill-option" data-val="Other" onclick="selectPill('genderGrid', this)">🧑 Other</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- SECTION 2: Health & Physical Details -->
+            <div class="section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                2. Physical & Lifestyle Details
+            </div>
+
+            <div class="form-grid">
+                <!-- Height -->
+                <div class="form-group input-group" id="group-height">
+                    <div class="label-box">
+                        <label for="height">Height (cm)</label>
+                    </div>
+                    <input type="number" id="height" placeholder="e.g. 175" min="90" max="230" oninput="calculateBMI()">
+                    <div class="error-msg" id="err-height">⚠️ Height should be between 90 - 230 cm.</div>
+                </div>
+
+                <!-- Weight -->
+                <div class="form-group input-group" id="group-weight">
+                    <div class="label-box">
+                        <label for="weight">Weight (kg)</label>
+                        <span class="badge-tag" id="bmiBadge">BMI: --</span>
+                    </div>
+                    <input type="number" id="weight" placeholder="e.g. 72" min="30" max="200" oninput="calculateBMI()">
+                    <div class="error-msg" id="err-weight">⚠️ Weight should be between 30 - 200 kg.</div>
+                </div>
+
+                <!-- Tobacco / Smoker Pill Selection -->
+                <div class="form-group full-width">
+                    <label>Do You Consume Tobacco / Cigarettes?</label>
+                    <div class="pill-grid" id="smokerGrid">
+                        <div class="pill-option active" data-val="No" onclick="selectPill('smokerGrid', this)">🚭 No (Non-Smoker)</div>
+                        <div class="pill-option" data-val="Yes" onclick="selectPill('smokerGrid', this)">🚬 Yes (Smoker)</div>
+                    </div>
+                </div>
+
+                <!-- Existing Medical Conditions -->
+                <div class="form-group full-width">
+                    <label for="medical">Existing Medical Conditions / History</label>
+                    <textarea id="medical" rows="2" placeholder="Mention hypertension, diabetes, surgical history or type 'None'"></textarea>
+                </div>
+            </div>
+
+
+            <!-- SECTION 3: Financial & Policy Options -->
+            <div class="section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                3. Financial & Insurance Needs
+            </div>
+
+            <div class="form-grid">
+                <!-- Annual Income -->
+                <div class="form-group input-group" id="group-income">
+                    <div class="label-box">
+                        <label for="income">Annual Income / CTC</label>
+                    </div>
+                    <input type="text" id="income" placeholder="e.g. ₹ 10,00,000" oninput="formatCurrency(this)">
+                </div>
+
+                <!-- Occupation -->
+                <div class="form-group">
+                    <div class="label-box">
+                        <label for="occupation">Occupation</label>
+                    </div>
+                    <select id="occupation">
+                        <option value="Salaried Employee">Salaried Employee</option>
+                        <option value="Business Owner / Self-Employed">Business Owner / Self-Employed</option>
+                        <option value="Professional (Doctor, CA, Lawyer)">Professional (Doctor, CA, Lawyer)</option>
+                        <option value="Student">Student</option>
+                        <option value="Homemaker">Homemaker</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Life Cover Quick Pills -->
+                <div class="form-group full-width" id="group-cover">
+                    <label for="cover">Required Life Cover (₹)</label>
+                    <div class="cover-pills">
+                        <button type="button" class="cover-btn" onclick="setCover('50 Lakhs', this)">₹ 50 Lakhs</button>
+                        <button type="button" class="cover-btn active" onclick="setCover('1 Crore', this)">₹ 1 Crore</button>
+                        <button type="button" class="cover-btn" onclick="setCover('1.5 Crores', this)">₹ 1.5 Crores</button>
+                        <button type="button" class="cover-btn" onclick="setCover('2 Crores', this)">₹ 2 Crores</button>
+                    </div>
+                    <input type="text" id="cover" value="₹ 1 Crore" placeholder="Select or type cover amount" oninput="updateCustomCover(this)">
+                </div>
+
+                <!-- Policy Term -->
+                <div class="form-group full-width">
+                    <label for="term">Preferred Policy Term (Years)</label>
+                    <div class="cover-pills" style="margin-bottom:8px;">
+                        <button type="button" class="cover-btn" onclick="setTerm(15, this)">15 Yrs</button>
+                        <button type="button" class="cover-btn" onclick="setTerm(25, this)">25 Yrs</button>
+                        <button type="button" class="cover-btn active" onclick="setTerm(30, this)">30 Yrs</button>
+                        <button type="button" class="cover-btn" onclick="setTerm(40, this)">40 Yrs</button>
+                    </div>
+                    <input type="number" id="term" value="30" min="5" max="50" placeholder="e.g. 30">
+                </div>
+            </div>
+
+
+            <!-- SECTION 4: Document & Camera Capture -->
+            <div class="section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                4. Document Capture / Upload (Optional)
+            </div>
+
+            <div class="form-group full-width">
+                <div class="label-box">
+                    <label for="docType">Select Document Type</label>
+                </div>
+                <select id="docType" style="margin-bottom: 12px;">
+                    <option value="Aadhaar Card / ID Proof">Aadhaar Card / ID Proof</option>
+                    <option value="PAN Card">PAN Card</option>
+                    <option value="Income Proof / Salary Slip">Income Proof / Salary Slip</option>
+                    <option value="Existing Policy Document">Existing Policy Copy</option>
+                    <option value="Medical Report">Medical Report</option>
+                </select>
+
+                <!-- Interactive Upload Card -->
+                <div class="upload-dropzone" id="dropzone">
+                    <div class="upload-icon-circle">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    </div>
+                    <div class="upload-title">Capture Photo or Upload Document</div>
+                    <div class="upload-sub">Supports Camera capture, JPG, PNG & PDF (Max 10MB)</div>
+
+                    <div class="btn-row">
+                        <button type="button" class="action-btn-sm btn-cam" onclick="document.getElementById('camInput').click()">
+                            📸 Open Mobile Camera
+                        </button>
+                        <button type="button" class="action-btn-sm btn-gallery" onclick="document.getElementById('fileInput').click()">
+                            📁 Browse Files
+                        </button>
+                    </div>
+
+                    <!-- Hidden Inputs -->
+                    <input type="file" id="camInput" style="display:none;" accept="image/*" capture="environment" onchange="onFileChosen(this)">
+                    <input type="file" id="fileInput" style="display:none;" accept="image/*,application/pdf" onchange="onFileChosen(this)">
+                </div>
+
+                <!-- Live Document Card Preview -->
+                <div class="doc-preview-card" id="docPreviewBox">
+                    <div class="preview-grid">
+                        <img id="thumbImg" class="preview-img-box" src="" alt="Thumbnail">
+                        <div class="preview-meta">
+                            <div class="preview-filename" id="metaFileName">document.jpg</div>
+                            <div class="preview-tags">
+                                <span class="meta-chip highlight" id="metaCategory">Aadhaar Card</span>
+                                <span class="meta-chip" id="metaSize">1.2 MB</span>
+                                <span class="meta-chip" id="metaType">image/jpeg</span>
+                            </div>
+                            <button type="button" class="btn-delete-file" onclick="clearFileSelection()">✕ Remove File</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Remarks -->
+            <div class="form-group full-width" style="margin-top: 14px;">
+                <label for="remarks">Additional Instructions / Remarks</label>
+                <textarea id="remarks" rows="2" placeholder="Mention preferred calling time or specific policy requirements..."></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" class="submit-btn" onclick="handleFormSubmission()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                Submit to WhatsApp
+            </button>
+
+            <div class="footer-note">
+                🔒 Your privacy is 100% safe with us. Details are used solely to calculate official insurer quotes.
+            </div>
+
+        </form>
+
+    </div>
 
 </div>
 
 <script>
-let selectedFile = null;
+let activeFile = null;
 
-function handleFileSelect(inputElement) {
-    if (inputElement.files && inputElement.files[0]) {
-        selectedFile = inputElement.files[0];
-        displayFileDetails(selectedFile);
+// Initial Progress Calculation
+updateProgress();
+
+function updateProgress() {
+    let fields = ['fullName', 'mobile', 'pincode', 'dob'];
+    let validCount = 0;
+
+    if (isNameValid()) validCount++;
+    if (isMobileValid()) validCount++;
+    if (isPincodeValid()) validCount++;
+    if (isDOBValid()) validCount++;
+
+    let percent = Math.round((validCount / fields.length) * 100);
+    document.getElementById('progressBar').style.width = percent + '%';
+    document.getElementById('progressPercent').textContent = percent + '%';
+}
+
+// 1. Validation Logic
+function isNameValid() {
+    let val = document.getElementById('fullName').value.trim();
+    return val.length >= 3 && /^[a-zA-Z\s\.]+$/.test(val);
+}
+
+function validateName() {
+    let grp = document.getElementById('group-name');
+    if (isNameValid()) {
+        grp.classList.remove('invalid');
+        grp.classList.add('valid');
+    } else {
+        grp.classList.remove('valid');
+    }
+    updateProgress();
+}
+
+function isMobileValid() {
+    let val = document.getElementById('mobile').value.trim();
+    return /^[6-9]\d{9}$/.test(val);
+}
+
+function validateMobile() {
+    let input = document.getElementById('mobile');
+    input.value = input.value.replace(/\D/g, ''); // restrict digits only
+    let grp = document.getElementById('group-mobile');
+
+    if (isMobileValid()) {
+        grp.classList.remove('invalid');
+        grp.classList.add('valid');
+    } else {
+        grp.classList.remove('valid');
+    }
+    updateProgress();
+}
+
+function isEmailValid() {
+    let val = document.getElementById('email').value.trim();
+    if (!val) return true;
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+}
+
+function validateEmail() {
+    let grp = document.getElementById('group-email');
+    if (isEmailValid()) {
+        grp.classList.remove('invalid');
+    } else {
+        grp.classList.add('invalid');
     }
 }
 
-function displayFileDetails(file) {
-    const previewContainer = document.getElementById("previewContainer");
-    const previewImage = document.getElementById("previewImage");
-    const previewFileName = document.getElementById("previewFileName");
-    const previewDocType = document.getElementById("previewDocType");
-    const previewFileSize = document.getElementById("previewFileSize");
-    const previewFileType = document.getElementById("previewFileType");
-    const docTypeSelect = document.getElementById("docType");
+function isPincodeValid() {
+    let val = document.getElementById('pincode').value.trim();
+    return /^\d{6}$/.test(val);
+}
 
-    previewFileName.textContent = file.name;
-    previewDocType.textContent = docTypeSelect.value;
-    previewFileType.textContent = file.type || 'Unknown';
+function validatePincode() {
+    let input = document.getElementById('pincode');
+    input.value = input.value.replace(/\D/g, '');
+    let grp = document.getElementById('group-pincode');
 
-    // Format file size
-    const sizeKB = (file.size / 1024).toFixed(1);
-    if (file.size > 1024 * 1024) {
-        previewFileSize.textContent = (file.size / (1024 * 1024)).toFixed(2) + " MB";
+    if (isPincodeValid()) {
+        grp.classList.remove('invalid');
+        grp.classList.add('valid');
     } else {
-        previewFileSize.textContent = sizeKB + " KB";
+        grp.classList.remove('valid');
+    }
+    updateProgress();
+}
+
+function isDOBValid() {
+    let dobVal = document.getElementById('dob').value;
+    if (!dobVal) return false;
+
+    let dobDate = new Date(dobVal);
+    let today = new Date();
+    let age = today.getFullYear() - dobDate.getFullYear();
+    let m = today.getMonth() - dobDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
+        age--;
     }
 
-    // Display image preview if it's an image file
-    if (file.type.startsWith("image/")) {
-        const reader = new FileReader();
+    if (age >= 18 && age <= 65) {
+        document.getElementById('ageBadge').textContent = `Age: ${age} Years`;
+        return true;
+    } else {
+        document.getElementById('ageBadge').textContent = `Invalid Age`;
+        return false;
+    }
+}
+
+function validateDOB() {
+    let grp = document.getElementById('group-dob');
+    if (isDOBValid()) {
+        grp.classList.remove('invalid');
+        grp.classList.add('valid');
+    } else {
+        grp.classList.remove('valid');
+        grp.classList.add('invalid');
+    }
+    updateProgress();
+}
+
+// 2. Physical Details & BMI Calculation
+function calculateBMI() {
+    let h = parseFloat(document.getElementById('height').value);
+    let w = parseFloat(document.getElementById('weight').value);
+    let badge = document.getElementById('bmiBadge');
+
+    if (h > 90 && w > 30) {
+        let heightMeters = h / 100;
+        let bmi = (w / (heightMeters * heightMeters)).toFixed(1);
+        let status = 'Normal';
+        if (bmi < 18.5) status = 'Underweight';
+        else if (bmi >= 25 && bmi < 30) status = 'Overweight';
+        else if (bmi >= 30) status = 'Obese';
+
+        badge.textContent = `BMI: ${bmi} (${status})`;
+    } else {
+        badge.textContent = 'BMI: --';
+    }
+}
+
+// 3. Selection Pill Handlers
+function selectPill(containerId, el) {
+    let container = document.getElementById(containerId);
+    let options = container.getElementsByClassName('pill-option');
+    for (let opt of options) {
+        opt.classList.remove('active');
+    }
+    el.classList.add('active');
+}
+
+function getSelectedPill(containerId) {
+    let active = document.getElementById(containerId).querySelector('.pill-option.active');
+    return active ? active.getAttribute('data-val') : 'N/A';
+}
+
+function setCover(val, btnEl) {
+    document.getElementById('cover').value = '₹ ' + val;
+    let btns = btnEl.parentElement.getElementsByClassName('cover-btn');
+    for (let b of btns) b.classList.remove('active');
+    btnEl.classList.add('active');
+}
+
+function updateCustomCover(inputEl) {
+    let btns = inputEl.parentElement.getElementsByClassName('cover-btn');
+    for (let b of btns) b.classList.remove('active');
+}
+
+function setTerm(yrs, btnEl) {
+    document.getElementById('term').value = yrs;
+    let btns = btnEl.parentElement.getElementsByClassName('cover-btn');
+    for (let b of btns) b.classList.remove('active');
+    btnEl.classList.add('active');
+}
+
+function formatCurrency(input) {
+    let nums = input.value.replace(/\D/g, '');
+    if (nums) {
+        let x = nums.toString();
+        let lastThree = x.substring(x.length - 3);
+        let otherNumbers = x.substring(0, x.length - 3);
+        if (otherNumbers != '') lastThree = ',' + lastThree;
+        let res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+        input.value = '₹ ' + res;
+    } else {
+        input.value = '';
+    }
+}
+
+// 4. File Handling & Preview
+function onFileChosen(inputEl) {
+    if (inputEl.files && inputEl.files[0]) {
+        activeFile = inputEl.files[0];
+        renderFilePreview(activeFile);
+    }
+}
+
+function renderFilePreview(file) {
+    let box = document.getElementById('docPreviewBox');
+    let thumb = document.getElementById('thumbImg');
+    let fileName = document.getElementById('metaFileName');
+    let category = document.getElementById('metaCategory');
+    let size = document.getElementById('metaSize');
+    let type = document.getElementById('metaType');
+    let docTypeSel = document.getElementById('docType');
+
+    fileName.textContent = file.name;
+    category.textContent = docTypeSel.value;
+    type.textContent = file.type || 'Document';
+
+    let sizeKB = (file.size / 1024).toFixed(1);
+    if (file.size > 1024 * 1024) {
+        size.textContent = (file.size / (1024 * 1024)).toFixed(2) + " MB";
+    } else {
+        size.textContent = sizeKB + " KB";
+    }
+
+    if (file.type.startsWith('image/')) {
+        let reader = new FileReader();
         reader.onload = function(e) {
-            previewImage.src = e.target.result;
-            previewImage.style.display = "block";
+            thumb.src = e.target.result;
         };
         reader.readAsDataURL(file);
     } else {
-        // Fallback icon for PDF or non-image
-        previewImage.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 24 24' fill='none' stroke='%23075e54' stroke-width='2'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8'/></svg>";
+        thumb.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 24 24' fill='none' stroke='%23075e54' stroke-width='2'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8'/></svg>";
     }
 
-    previewContainer.style.display = "block";
+    box.style.display = 'block';
 }
 
-function removeSelectedFile() {
-    selectedFile = null;
-    document.getElementById("cameraInput").value = "";
-    document.getElementById("galleryInput").value = "";
-    document.getElementById("previewContainer").style.display = "none";
+function clearFileSelection() {
+    activeFile = null;
+    document.getElementById('camInput').value = '';
+    document.getElementById('fileInput').value = '';
+    document.getElementById('docPreviewBox').style.display = 'none';
 }
 
-// Update doc type in preview if user changes select dropdown
-document.getElementById("docType").addEventListener("change", function() {
-    if (selectedFile) {
-        document.getElementById("previewDocType").textContent = this.value;
-    }
-});
+// 5. Final Submission Handler
+async function handleFormSubmission() {
+    let nameValid = isNameValid();
+    let mobileValid = isMobileValid();
+    let pincodeValid = isPincodeValid();
+    let dobValid = isDOBValid();
 
-async function sendWhatsApp(){
+    document.getElementById('group-name').classList.toggle('invalid', !nameValid);
+    document.getElementById('group-mobile').classList.toggle('invalid', !mobileValid);
+    document.getElementById('group-pincode').classList.toggle('invalid', !pincodeValid);
+    document.getElementById('group-dob').classList.toggle('invalid', !dobValid);
 
-    const name = document.getElementById("name").value.trim();
-    const mobile = document.getElementById("mobile").value.trim();
-    const pincode = document.getElementById("pincode").value.trim();
-    const dob = document.getElementById("dob").value;
-
-    if (!name || !mobile || !pincode || !dob) {
-        alert("Please fill in all required fields (Name, Mobile, PIN Code, DOB).");
+    if (!nameValid || !mobileValid || !pincodeValid || !dobValid) {
+        alert("⚠️ Please correct the highlighted errors in the form before submitting.");
         return;
     }
 
-    const phone = "919810597410"; // Destination WhatsApp number
-    const docType = document.getElementById("docType").value;
+    const phone = "919810597410";
+    const name = document.getElementById('fullName').value.trim();
+    const mobile = document.getElementById('mobile').value.trim();
+    const email = document.getElementById('email').value.trim() || 'N/A';
+    const pincode = document.getElementById('pincode').value.trim();
+    const dob = document.getElementById('dob').value;
+    const ageText = document.getElementById('ageBadge').textContent;
+    const gender = getSelectedPill('genderGrid');
 
-    let msg = `*Term Insurance Quotation Request*\n\n` +
-`*Full Name:* ${name}\n` +
-`*Mobile:* ${mobile}\n` +
-`*Email:* ${document.getElementById("email").value || 'N/A'}\n` +
-`*PIN Code:* ${pincode}\n` +
-`*Date of Birth:* ${dob}\n` +
-`*Gender:* ${document.getElementById("gender").value}\n` +
-`*Height:* ${document.getElementById("height").value ? document.getElementById("height").value + ' cm' : 'N/A'}\n` +
-`*Weight:* ${document.getElementById("weight").value ? document.getElementById("weight").value + ' kg' : 'N/A'}\n` +
-`*Annual Income / CTC:* ${document.getElementById("income").value || 'N/A'}\n` +
-`*Occupation:* ${document.getElementById("occupation").value || 'N/A'}\n` +
-`*Smoking/Tobacco:* ${document.getElementById("smoker").value}\n` +
-`*Medical Conditions:* ${document.getElementById("medical").value || 'None'}\n` +
-`*Required Life Cover:* ${document.getElementById("cover").value || 'N/A'}\n` +
-`*Policy Term:* ${document.getElementById("term").value ? document.getElementById("term").value + ' Years' : 'N/A'}\n` +
-`*Remarks:* ${document.getElementById("remarks").value || 'None'}`;
+    const height = document.getElementById('height').value ? document.getElementById('height').value + ' cm' : 'N/A';
+    const weight = document.getElementById('weight').value ? document.getElementById('weight').value + ' kg' : 'N/A';
+    const bmiText = document.getElementById('bmiBadge').textContent;
+    const smoker = getSelectedPill('smokerGrid');
+    const medical = document.getElementById('medical').value.trim() || 'None';
 
-    if (selectedFile) {
-        const fileSizeStr = selectedFile.size > 1024 * 1024 
-            ? (selectedFile.size / (1024 * 1024)).toFixed(2) + " MB" 
-            : (selectedFile.size / 1024).toFixed(1) + " KB";
-            
-        msg += `\n\n📷 *Attached Document Details:*\n` +
-               `• *Document Category:* ${docType}\n` +
-               `• *File Name:* ${selectedFile.name}\n` +
-               `• *File Size:* ${fileSizeStr}\n` +
-               `• *File Type:* ${selectedFile.type || 'Image'}`;
+    const income = document.getElementById('income').value.trim() || 'N/A';
+    const occupation = document.getElementById('occupation').value;
+    const cover = document.getElementById('cover').value.trim() || 'N/A';
+    const term = document.getElementById('term').value ? document.getElementById('term').value + ' Years' : 'N/A';
+    const remarks = document.getElementById('remarks').value.trim() || 'None';
+    const docCategory = document.getElementById('docType').value;
+
+    let msg = `*Term Insurance Quotation Request*\n` +
+`----------------------------------------\n` +
+`👤 *Full Name:* ${name}\n` +
+`📱 *Mobile:* ${mobile}\n` +
+`✉️ *Email:* ${email}\n` +
+`📍 *PIN Code:* ${pincode}\n` +
+`🎂 *DOB:* ${dob} (${ageText})\n` +
+`🚻 *Gender:* ${gender}\n\n` +
+`🩺 *Physical & Lifestyle Details:*\n` +
+`• *Height / Weight:* ${height} / ${weight}\n` +
+`• *BMI Status:* ${bmiText}\n` +
+`• *Tobacco / Smoking:* ${smoker}\n` +
+`• *Medical History:* ${medical}\n\n` +
+`💼 *Financial & Plan Requirements:*\n` +
+`• *Annual CTC:* ${income}\n` +
+`• *Occupation:* ${occupation}\n` +
+`• *Required Cover:* ${cover}\n` +
+`• *Policy Term:* ${term}\n` +
+`• *Remarks:* ${remarks}`;
+
+    if (activeFile) {
+        let sizeStr = activeFile.size > 1024 * 1024 
+            ? (activeFile.size / (1024 * 1024)).toFixed(2) + " MB" 
+            : (activeFile.size / 1024).toFixed(1) + " KB";
+
+        msg += `\n\n📁 *Attached Document Details:*\n` +
+               `• *Category:* ${docCategory}\n` +
+               `• *File Name:* ${activeFile.name}\n` +
+               `• *Size:* ${sizeStr}\n` +
+               `• *Format:* ${activeFile.type || 'Image'}`;
     }
 
-    // Try Web Share API first (Native Mobile ShareSheet allows sending File + Message directly into WhatsApp)
-    if (selectedFile && navigator.canShare && navigator.canShare({ files: [selectedFile] })) {
+    // Try Web Share API first for direct file + text send on Mobile
+    if (activeFile && navigator.canShare && navigator.canShare({ files: [activeFile] })) {
         try {
             await navigator.share({
                 title: 'Term Insurance Quotation Request',
                 text: msg,
-                files: [selectedFile]
+                files: [activeFile]
             });
             return;
         } catch (err) {
-            console.log('Web Share fallback to wa.me URL scheme:', err);
+            console.log('Web Share fallback:', err);
         }
     }
 
-    // Fallback wa.me link for desktop or browsers without file share API
-    if (selectedFile) {
-        alert("Image details captured! WhatsApp will now open. Please attach your captured image (" + selectedFile.name + ") in the WhatsApp chat window.");
+    if (activeFile) {
+        alert("Captured document details added! Opening WhatsApp now. Please attach your document photo (" + activeFile.name + ") in the WhatsApp chat.");
     }
 
     const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
