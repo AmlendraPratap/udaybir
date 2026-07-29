@@ -52,17 +52,17 @@ body {
     margin: 0 auto;
 }
 
-/* Header Banner - High Contrast Midnight Obsidian Theme */
+/* Header Banner - High Contrast Midnight Motor Theme */
 .brand-card {
-    background: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%);
+    background: linear-gradient(135deg, #060b19 0%, #0f172a 50%, #1e1b4b 100%);
     color: #ffffff;
     border-radius: var(--radius-lg);
     padding: 34px 28px;
     margin-bottom: 24px;
-    box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.5), 0 0 30px rgba(255, 0, 85, 0.2);
+    box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.5), 0 0 30px rgba(0, 242, 254, 0.2);
     position: relative;
     overflow: hidden;
-    border: 1.5px solid rgba(255, 0, 85, 0.35);
+    border: 1.5px solid rgba(0, 242, 254, 0.35);
 }
 
 .brand-card::after {
@@ -72,12 +72,12 @@ body {
     right: -20%;
     width: 280px;
     height: 280px;
-    background: radial-gradient(circle, rgba(255, 0, 85, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, transparent 70%);
     pointer-events: none;
 }
 
-/* EKG Pulse Wave Line */
-.ekg-container {
+/* Speedometer / Cyber Highway Motion Wave */
+.speed-container {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -87,30 +87,30 @@ body {
     opacity: 0.95;
 }
 
-.ekg-svg {
+.speed-svg {
     width: 100%;
     height: 100%;
 }
 
-.ekg-path-bg {
+.speed-path-bg {
     fill: none;
-    stroke: rgba(255, 0, 85, 0.18);
+    stroke: rgba(0, 242, 254, 0.18);
     stroke-width: 2;
 }
 
-.ekg-path-pulse {
+.speed-path-pulse {
     fill: none;
-    stroke: #ff0055;
+    stroke: #00f2fe;
     stroke-width: 4;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
-    animation: ekgSweep 2.4s linear infinite;
-    filter: drop-shadow(0 0 12px #ff0055) drop-shadow(0 0 4px #ff5588);
+    animation: speedSweep 2.2s linear infinite;
+    filter: drop-shadow(0 0 12px #00f2fe) drop-shadow(0 0 4px #38ef7d);
 }
 
-@keyframes ekgSweep {
+@keyframes speedSweep {
     0% {
         stroke-dashoffset: 1000;
     }
@@ -123,9 +123,9 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255, 0, 85, 0.16);
-    border: 1px solid rgba(255, 0, 85, 0.45);
-    color: #ffb3c6;
+    background: rgba(0, 242, 254, 0.14);
+    border: 1px solid rgba(0, 242, 254, 0.45);
+    color: #a5f3fc;
     backdrop-filter: blur(8px);
     padding: 6px 14px;
     border-radius: 30px;
@@ -135,31 +135,31 @@ body {
     letter-spacing: 0.3px;
     position: relative;
     z-index: 2;
-    box-shadow: 0 0 12px rgba(255, 0, 85, 0.2);
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.2);
 }
 
 .live-pulse-dot {
     width: 10px;
     height: 10px;
-    background-color: #ff0055;
+    background-color: #00f2fe;
     border-radius: 50%;
     display: inline-block;
-    animation: dotPulse 1.4s infinite;
-    box-shadow: 0 0 8px #ff0055;
+    animation: dotPulseSpeed 1.4s infinite;
+    box-shadow: 0 0 8px #00f2fe;
 }
 
-@keyframes dotPulse {
+@keyframes dotPulseSpeed {
     0% {
         transform: scale(0.9);
-        box-shadow: 0 0 0 0 rgba(255, 0, 85, 1);
+        box-shadow: 0 0 0 0 rgba(0, 242, 254, 1);
     }
     70% {
         transform: scale(1.15);
-        box-shadow: 0 0 0 10px rgba(255, 0, 85, 0);
+        box-shadow: 0 0 0 10px rgba(0, 242, 254, 0);
     }
     100% {
         transform: scale(0.9);
-        box-shadow: 0 0 0 0 rgba(255, 0, 85, 0);
+        box-shadow: 0 0 0 0 rgba(0, 242, 254, 0);
     }
 }
 
@@ -177,22 +177,19 @@ body {
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
-.animated-heart-icon {
+.animated-car-icon {
     width: 36px;
     height: 36px;
-    animation: realHeartbeat 1.4s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-    filter: drop-shadow(0 0 16px #ff0055) drop-shadow(0 0 4px #ff5588);
+    animation: carEngineRev 1.8s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 14px #00f2fe) drop-shadow(0 0 4px #ffffff);
     display: inline-block;
     flex-shrink: 0;
 }
 
-@keyframes realHeartbeat {
-    0% { transform: scale(1); }
-    14% { transform: scale(1.32); filter: drop-shadow(0 0 20px #ff0055); }
-    28% { transform: scale(1); }
-    42% { transform: scale(1.22); filter: drop-shadow(0 0 14px #ff0055); }
-    70% { transform: scale(1); }
-    100% { transform: scale(1); }
+@keyframes carEngineRev {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-3px) scale(1.06); filter: drop-shadow(0 0 20px #00f2fe); }
+    100% { transform: translateY(0) scale(1); }
 }
 
 .brand-card p.rgb-led-text {
@@ -620,11 +617,11 @@ input:focus, select:focus, textarea:focus {
 
     <!-- Header Banner -->
     <div class="brand-card">
-        <!-- EKG Heartbeat Pulse Wave Line -->
-        <div class="ekg-container">
-            <svg class="ekg-svg" viewBox="0 0 1000 120" preserveAspectRatio="none">
-                <path class="ekg-path-bg" d="M0,60 L200,60 L220,60 L230,20 L240,100 L250,10 L260,80 L270,60 L300,60 L500,60 L520,60 L530,20 L540,100 L550,10 L560,80 L570,60 L600,60 L800,60 L820,60 L830,20 L840,100 L850,10 L860,80 L870,60 L1000,60" />
-                <path class="ekg-path-pulse" d="M0,60 L200,60 L220,60 L230,20 L240,100 L250,10 L260,80 L270,60 L300,60 L500,60 L520,60 L530,20 L540,100 L550,10 L560,80 L570,60 L600,60 L800,60 L820,60 L830,20 L840,100 L850,10 L860,80 L870,60 L1000,60" />
+        <!-- Speedometer / Cyber Highway Motion Wave Line -->
+        <div class="speed-container">
+            <svg class="speed-svg" viewBox="0 0 1000 120" preserveAspectRatio="none">
+                <path class="speed-path-bg" d="M0,70 Q150,20 300,70 T600,70 T900,70 L1000,70" />
+                <path class="speed-path-pulse" d="M0,70 Q150,20 300,70 T600,70 T900,70 L1000,70" />
             </svg>
         </div>
 
@@ -633,8 +630,10 @@ input:focus, select:focus, textarea:focus {
             Real-Time Vehicle Protection & Motor Insurance Quote
         </div>
         <h1>
-            <svg class="animated-heart-icon" viewBox="0 0 24 24" fill="#ff0055">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            <svg class="animated-car-icon" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C1.4 11.2 1 12 1 13v3c0 .6.4 1 1 1h2"/>
+                <circle cx="7" cy="17" r="2"/>
+                <circle cx="17" cy="17" r="2"/>
             </svg>
             Motor Insurance Quotation
         </h1>
