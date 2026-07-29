@@ -195,6 +195,27 @@ body {
     100% { transform: scale(1); }
 }
 
+.brand-card p.rgb-led-text {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.6;
+    margin-top: 10px;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(90deg, #ff0055, #00f2fe, #ffdd00, #38ef7d, #ff00d4, #ff0055);
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rgbLedGlow 3.5s linear infinite;
+    filter: drop-shadow(0 2px 14px rgba(255, 0, 85, 0.45));
+}
+
+@keyframes rgbLedGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 .brand-card p {
     font-size: 15px;
     color: rgba(255, 255, 255, 0.88);
@@ -659,7 +680,7 @@ input:focus, select:focus, textarea:focus {
             </svg>
             Term Insurance Quotation
         </h1>
-        <p>Ensure financial security for your loved ones. Fill in your details below for an instant custom quote.</p>
+        <p class="rgb-led-text">Ensure financial security for your loved ones. Fill in your details below for an instant custom quote.</p>
     </div>
 
     <!-- Main Card -->
